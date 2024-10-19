@@ -1,0 +1,202 @@
+#   BFS system configuration
+
+bfsClientLayer {
+    log_enabled : false
+    log_verbose : false
+    log_to_file : false
+    logfile : bfs_client.log
+
+    # Format file system on mount
+    do_mkfs : true
+
+    # Enable direct io (toggles caching in client FUSE)
+    direct_io : true
+
+    # Server connection settings (used by bechmark script)
+    bfs_server_ip : 192.168.86.69
+    bfs_server_port : 50000
+
+    # Client/server security association
+    # Note: For simplicity, both directions use same SA
+    cl_serv_sa {
+        initiator : client
+        responder : server
+        key : 4n2HhXKloX3OohFjQyBj+A==
+    }
+}
+
+bfsServer {
+    log_enabled : true
+    log_verbose : false
+    log_to_file : false
+    logfile : bfs_server.log
+
+    # Server listener settings
+    bfs_server_port : 50000
+
+    # [WIP]
+    # Number of threads handling file operations. A positive values indicates that
+    # the server is multithreaded (i.e., a main dispatcher thread and at least one
+    # worker), and a zero value indicates that the server is single threaded (main
+    # thread handles everything).
+    # Note: Leave single threaded for now to avoid concurrent cache access issues
+    # at fs/block layers.
+    # Note: Make sure to modify enclave config to reflect this number.
+    num_file_worker_threads : 1
+
+    # Server->client security association
+    # Note: For simplicity, both directions use same SA
+    cl_serv_sa {
+        initiator : client
+        responder : server
+        key : 4n2HhXKloX3OohFjQyBj+A==
+    }
+}
+
+bfsFsLayer {
+    log_enabled : true
+    log_verbose : false
+
+    use_lwext4_impl : true
+
+    # TEE->TEE security association for block data
+    fs_sa {
+        initiator : server
+        responder : server
+        key : H7Q2f8BsDTDq/qIDytZMxg==
+    }
+}
+
+bfsCommon {
+    # Collect timer measurements
+    perf_test : false
+
+    # Enable merkle tree for block layer
+    merkle_tree : true
+
+    journal : false
+}
+
+bfsUtilLayer {
+    log_enabled : false
+    log_verbose : false
+
+    # Cache configuration (the flag toggles the bfs fs layer cache, 
+    # but the size is used by either the bfs or lwext4 impl).
+    cache_enabled : false
+    cache_sz_limit : 1
+}
+
+bfsBlockLayer {
+    log_enabled : false
+    log_verbose : false
+
+    # for lwext4 backend
+    num_blocks : 524288
+
+    # Block allocation scheme
+    allocation_discipline : linear
+}
+
+bfsFsLayerTest {
+    log_enabled : false
+    log_verbose : false
+    log_to_file : false
+    logfile : bfs_core_test.log
+
+    # Format file system on mount
+    do_mkfs : true
+
+    # Test parameters (used mainly by non-enclave test methods)
+    num_files : 1
+    num_test_iterations : 500
+    min_op_sz : 131072
+    max_op_sz : 131072
+}
+
+bfsDeviceLayer {
+    log_enabled : false
+    log_verbose : false
+
+    # Note: This contains some redundant fields for the benchmark scripts
+    devices [
+
+        device1 {
+            type : local
+            ip : 192.168.1.92
+            d1_type : local
+            d1_ip : 192.168.1.92
+
+            path : /tmp/bfs_ci/bfs_data_1.bin
+            port : 50001
+            did : 1       
+            size : 65536  
+            sa {
+                initiator : server
+                responder : device1
+                key : 2rIpKNl3XnCLx+/wWSmypg==
+            }
+        }
+
+        device2 {
+            type : local
+            ip : 192.168.1.92
+            d2_type : local
+            d2_ip : 192.168.1.92
+
+            path : /tmp/bfs_ci/bfs_data_2.bin
+            port : 50002
+            did : 2       
+            size : 65536  
+            sa {
+                initiator : server
+                responder : device2
+                key : h5zSPPDS1JJwKMhdCYhRog==
+            }
+        }
+
+        device3 {
+            type : local
+            ip : 192.168.1.92
+            d3_type : local
+            d3_ip : 192.168.1.92
+
+            path : /tmp/bfs_ci/bfs_data_3.bin
+            port : 50003
+            did : 3      
+            size : 65536 
+            sa {
+                initiator : server
+                responder : device3
+                key : z+uhMXO6HRJFNU6Gwgma9g==
+            }
+        }
+
+        device4 {
+            type : local
+            ip : 192.168.1.92
+            d4_type : local
+            d4_ip : 192.168.1.92
+
+            path : /tmp/bfs_ci/bfs_data_4.bin
+            port : 50004
+            did : 4     
+            size : 65536 
+            sa {
+                initiator : server
+                responder : device4
+                key : CdNloYZmE0ZUPKevQZ+UYA==
+            }
+        }
+    ]
+}
+
+bfsCryptoLayer {
+    log_enabled : false
+    log_verbose : false
+}
+
+bfsConfigLayer {
+    log_enabled : false
+    log_verbose : false
+}

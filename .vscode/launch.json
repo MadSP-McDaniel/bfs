@@ -1,0 +1,380 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "debug-core-test",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/bin/bfs_core_test",
+            "args": ["-c"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build/bin",
+            "environment": [],
+            "console": "externalTerminal",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            // "miDebuggerPath": "${env:SGX_SDK}/bin/sgx-gdb"
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "debug-dev-test",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/bin/bfs_dev_utest",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build/bin",
+            "environment": [],
+            "console": "externalTerminal",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            // "miDebuggerPath": "${env:SGX_SDK}/bin/sgx-gdb"
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "debug-blk-test",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/bin/bfs_blk_utest",
+            "args": ["-v"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build/bin",
+            "environment": [],
+            "console": "externalTerminal",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            // "miDebuggerPath": "${env:SGX_SDK}/bin/sgx-gdb"
+            "miDebuggerPath": "/usr/bin/gdb"
+        }, 
+        {
+            "name": "debug-core-test-ne-blk",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/bin/bfs_core_test_ne",
+            "args": ["-b"],
+            "stopAtEntry": false,
+            "externalConsole": false,
+            "cwd": "${workspaceFolder}/build/bin",
+            "environment": [],
+            "console": "externalTerminal",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "miDebuggerPath": "${env:SGX_SDK}/bin/sgx-gdb"
+            // "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "debug-core-test-ne-file",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/bin/bfs_core_test_ne",
+            // "args": ["-c"],
+            "args": ["-c", "-r", "-n", "1", "-f", "1048576", "-o", "131072"],
+            "stopAtEntry": false,
+            "externalConsole": false,
+            "cwd": "${workspaceFolder}/build/bin",
+            "environment": [],
+            "console": "externalTerminal",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "miDebuggerPath": "${env:SGX_SDK}/bin/sgx-gdb"
+            // "miDebuggerPath": "/usr/bin/gdb"
+        },
+        { 
+            "name": "debug-util-test",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/bin/bfs_util_utest",
+            "args": ["-c", "-v"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build/bin",
+            "environment": [],
+            "console": "externalTerminal",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            // "miDebuggerPath": "${env:SGX_SDK}/bin/sgx-gdb"
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        { 
+            "name": "debug-util-test-ne",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/bin/bfs_util_utest_ne",
+            "args": ["-x"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build/bin",
+            "environment": [],
+            "console": "externalTerminal",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "miDebuggerPath": "${env:SGX_SDK}/bin/sgx-gdb"
+            // "miDebuggerPath": "/usr/bin/gdb"
+        },    
+        {
+            "name": "debug-server",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/bin/bfs_server",
+            // "args": ["-i", "ext_images/ext2"],
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build",
+            "environment": [],
+            "console": "externalTerminal",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            // "miDebuggerPath": "${env:SGX_SDK}/bin/sgx-gdb"
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "debug-server-ne",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/bin/bfs_server_ne",
+            // "args": ["-v"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build/bin",
+            "environment": [],
+            "console": "externalTerminal",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "miDebuggerPath": "${env:SGX_SDK}/bin/sgx-gdb"
+            // "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "debug-client",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/bin/bfs_client",
+            // "args": ["-d", "-s", "/tmp/bfs_ci/mp-c0"],
+            "args": ["-d", "-s", "-o", "allow_other", "/mnt/bfs_ci"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build/bin",
+            "environment": [],
+            "console": "externalTerminal",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            // "miDebuggerPath": "${env:SGX_SDK}/bin/sgx-gdb"
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "debug-device",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/bin/bfs_device",
+            // "args": ["-d", "10", "-p", "2048", "-b", "1000000", "-v"],
+            "args": ["-d", "10"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build/bin",
+            "environment": [],
+            "console": "externalTerminal",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            // "miDebuggerPath": "${env:SGX_SDK}/bin/sgx-gdb"
+            "miDebuggerPath": "/usr/bin/gdb"
+        }, 
+        {
+            "name": "current-file",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            // "args": ["m", "10"],
+            "args": ["u"],
+            "cwd": "${workspaceFolder}/benchmarks/micro",
+            // "cwd": "${workspaceFolder}/benchmarks/macro",
+        },
+        {
+            "name": "plot-micro",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/benchmarks/micro/parse_micro_results.py",
+            // "args": ["5", "seqread_multi", "bfs_ci"],
+            // "args": ["1", "seqread_multi", "bfs_ci"],
+            // "args": ["5", "seqread_multi,rread_multi", "nfs,nfs_ci,bfs,bfs_ci,"],
+            // "args": ["5", "seqread_multi,rread_multi", "bfs,bfs_ci,nfs,"],
+            "args": ["1", "seqread,rread,seqwrite,rwrite", "nfs,nfs_ci,bfs,bfs_ci,"],
+            "externalConsole": false,
+            // "args": ["1", "seqread", "bfs_ci,"],
+            "cwd": "${workspaceFolder}/benchmarks/micro",
+            // "cwd": "${workspaceFolder}/benchmarks/macro",   
+        },
+        {
+            "name": "plot-mt-micro",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/benchmarks/micro/parse_mt.py",
+            "args": [],
+            "externalConsole": false,
+            "cwd": "${workspaceFolder}/benchmarks/micro",
+            // "cwd": "${workspaceFolder}/benchmarks/macro",   
+        },
+        {
+            "name": "plot-raw-fs",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/benchmarks/micro/parse_raw_fs_perf.py",
+            "args": [],
+            "externalConsole": false,
+            "cwd": "${workspaceFolder}/benchmarks/micro",
+            // "cwd": "${workspaceFolder}/benchmarks/macro",   
+        },
+        {
+            "name": "plot-zt",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/benchmarks/new_bench/parse_zerotrace_res.py",
+            "args": [],
+            "externalConsole": false,
+            "cwd": "${workspaceFolder}/benchmarks/new_bench",
+            // "cwd": "${workspaceFolder}/benchmarks/macro",   
+        },
+        {
+            "name": "plot-utilities",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/benchmarks/new_bench/plot_utilities.py",
+            "args": [],
+            "externalConsole": false,
+            "cwd": "${workspaceFolder}/benchmarks/new_bench",
+            // "cwd": "${workspaceFolder}/benchmarks/macro",   
+        },
+        {
+            "name": "plot",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/benchmarks/plot.py",
+            "args": [],
+            "externalConsole": false,
+            "cwd": "${workspaceFolder}/benchmarks",
+        },
+        {
+            "name": "plot-new-micro",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/benchmarks/new_bench/plot_micro.py",
+            "args": [],
+            "externalConsole": false,
+            "cwd": "${workspaceFolder}/benchmarks",
+        },
+        {
+            "name": "plot-new-macro",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/benchmarks/new_bench/plot_macro.py",
+            "args": [],
+            "externalConsole": false,
+            "cwd": "${workspaceFolder}/benchmarks",
+        },
+        {
+            "name": "split",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/benchmarks/new_bench/split.py",
+            "args": [],
+            "externalConsole": false,
+            "cwd": "${workspaceFolder}/benchmarks",
+        },
+        {
+            "name": "plot-macro",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/benchmarks/macro/parse_macro_results.py",
+            // "args": ["m", "10"],
+            "args": ["1", "bfs,bfs_ci,bfs_ci_c256,nfs,nfs_ci,"],
+            "externalConsole": false,
+            // "args": ["5", "bfs_ci,"],
+            // "args": ["u"],
+            "cwd": "${workspaceFolder}/benchmarks/macro",
+            // "cwd": "${workspaceFolder}/benchmarks/macro",   
+        },
+        {
+            "name": "debug-client-test",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/bin/bfs_client_test",
+            "args": ["-c"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build/bin",
+            "environment": [],
+            "console": "externalTerminal",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            // "miDebuggerPath": "${env:SGX_SDK}/bin/sgx-gdb"
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+    ]
+}

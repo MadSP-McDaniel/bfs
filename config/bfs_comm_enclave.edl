@@ -1,0 +1,24 @@
+/**
+ * @file bfs_comm_enclave.edl
+ * @brief Ecall/ocall interface description for the comms subsystem.
+ */
+
+enclave {
+    trusted {
+        public void empty_comm_ecall();
+    };
+
+    untrusted {
+      int32_t ocall_rawnet_connect_server(unsigned short port);
+      int32_t ocall_rawnet_client_connect([in, size=addr_len]const char *chAddress, uint32_t addr_len, unsigned short port);
+      int32_t ocall_rawnet_close(int socket);
+      int32_t ocall_rawnet_send_bytes(int socket, uint32_t len, [user_check]char *buf);
+      int32_t ocall_rawnet_read_bytes(int socket, uint32_t len, [user_check]char *buf);
+
+      int32_t ocall_sendPacketizedDataHdrL(int socket, uint32_t len);
+      uint32_t ocall_recvPacketizedDataHdrL(int socket);
+      
+      int32_t ocall_rawnet_accept_connection(int socket);
+      int32_t ocall_waitConnections(uint16_t wt, uint64_t socks_count, [in, out, count=socks_count]int32_t *all_socks, [out, count=1]uint32_t *ready_cnt);
+    };
+};

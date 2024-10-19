@@ -1,0 +1,14 @@
+/**
+ * @file bfs_enclave_util_test.edl
+ * @brief Enclave interface description for the enclave-based util unit tests.
+ */
+
+enclave {
+    from "bfs_util_enclave.edl" import *;
+
+    trusted {
+    };
+
+    untrusted {
+    };
+};

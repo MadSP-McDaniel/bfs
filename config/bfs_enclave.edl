@@ -1,0 +1,20 @@
+/**
+ * @file bfs_enclave.edl
+ * @brief Top level ecall/ocall interface description for enclaves requiring
+ * all subsystems (i.e., the core enclave object for bfs).
+ */
+
+enclave {
+    from "bfs_util_enclave.edl" import *;
+    from "bfs_comm_enclave.edl" import *;
+    from "bfs_config_enclave.edl" import *;
+    from "bfs_device_enclave.edl" import *;
+    // from "bfs_block_enclave.edl" import *;
+    from "bfs_core_enclave.edl" import *;
+
+    trusted {
+    };
+
+    untrusted {
+    };
+};

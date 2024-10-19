@@ -1,0 +1,15 @@
+/**
+ * @file bfs_device_enclave.edl
+ * @brief Ecall/ocall interface description for the device subsystem.
+ */
+
+enclave {
+    trusted {
+        public void empty_device_ecall();
+    };
+
+    untrusted {
+      uint64_t ocall_createDiskStorage(uint32_t did, uint32_t plen, [in, size=plen]const char *storagePath_str, uint64_t numBlocks);
+      void ocall_deleteDiskStorage(uint64_t blockStorage, uint64_t numBlocks);
+    };
+};

@@ -1,0 +1,25 @@
+/**
+ * @file bfs_util_enclave.edl
+ * @brief Ecall/ocall interface description for the utils subsystem.
+ */
+
+enclave {
+    trusted {
+        public int64_t ecall_bfs_encrypt([user_check]char **key, [user_check]char *iv, [user_check]char *out, uint32_t olen, [user_check]char *in,
+                                uint32_t ilen, [user_check]uint8_t **mtag);
+        public int64_t ecall_bfs_decrypt([user_check]char **key, [user_check]char *iv, [user_check]char *out, uint32_t olen, [user_check]char *in,
+                                uint32_t ilen, [user_check]uint8_t **mtag);
+        public void empty_util_ecall();
+    };
+
+    untrusted {
+      int64_t ocall_printf(int32_t handle, uint32_t msg_len, [in, size=msg_len]char *msg);
+      int64_t ocall_getTime(uint64_t buf_len, [out, size=buf_len]char *tbuf);
+      double ocall_get_time2();
+      int ocall_write_to_file(uint32_t fname_len, [in, size=fname_len]const char *fname, uint32_t buf_len, [in, size=buf_len]const char *buf);
+      int32_t ocall_openLog([in, size=namelen]char *fname, uint32_t namelen);
+      int64_t ocall_closeLog(int32_t fd);
+      int64_t ocall_do_alloc(uint32_t newsz);
+      void ocall_delete_allocation(int64_t ptr);
+    };
+};

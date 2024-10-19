@@ -1,0 +1,5 @@
+Package: bfs-dist
+Version: 1.0
+Architecture: all
+Maintainer: madsp
+Description: bfs server, client, and device binaries

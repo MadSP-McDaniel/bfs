@@ -1,0 +1,24 @@
+# This Dockerfile can be used together with the sgx Dockerfile for composing multiple containers. The main BFS Dockerfile is useful for building a single container experimental/dev environment.
+
+FROM sgx_builder:latest
+
+# see sgx documentation for latest precompiled binary version
+ENV SGX_VERSION=2.17.100.3
+ENV DIST=ubuntu20.04
+ENV BFS_HOME=/bfs
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Install general dependencies for bfs
+RUN /bin/bash -c "apt update && apt -y install build-essential fuse3 libfuse3-3 libfuse3-dev libgcrypt-dev pkg-config ocaml ocamlbuild gdb zsh pip nano valgrind automake autoconf libtool wget python-is-python3 libssl-dev git cmake perl libcurl4-openssl-dev protobuf-compiler libprotobuf-dev debhelper make reprepro unzip libgcrypt-dev iproute2 openssh-server nfs-kernel-server nfs-common kmod g++ apt-utils"
+
+RUN echo "deb [trusted=yes arch=amd64] file:///linux-sgx/linux/installer/deb/sgx_debian_local_repo focal main">>/etc/apt/sources.list
+RUN apt-get update
+RUN apt-get install -y libsgx-urts
+
+RUN sh -c "echo source /opt/intel/sgxsdk/environment >> /root/.bashrc"
+
+# Copy over sources for bfs
+COPY . /bfs
+WORKDIR /bfs
+
+CMD ["/bin/bash"]

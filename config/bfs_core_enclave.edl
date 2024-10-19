@@ -1,0 +1,16 @@
+/**
+ * @file bfs_core_enclave.edl
+ * @brief Ecall/ocall interface description for the core fs subsystem.
+ */
+
+enclave {
+    from "sgx_tstdc.edl" import sgx_thread_wait_untrusted_event_ocall, sgx_thread_set_untrusted_event_ocall;
+
+    trusted {
+      public int64_t ecall_bfs_handle_in_msg([user_check]void *in_conn_ptr, [user_check]void *rpkt_ptr);
+    };
+
+    untrusted {
+      int64_t ocall_handle_out_msg([user_check]void *conn_ptr, uint32_t buf_len, [in, size=buf_len]char *spkt_buf);
+    };
+};

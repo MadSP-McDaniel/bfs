@@ -1,0 +1,17 @@
+/**
+ * @file bfs_block_enclave.edl
+ * @brief Ecall/ocall interface description for the block subsystem.
+ */
+
+enclave {
+    from "sgx_tstdc.edl" import sgx_thread_wait_untrusted_event_ocall, sgx_thread_set_untrusted_event_ocall;
+    
+    trusted {
+        public void empty_block_ecall();
+    };
+
+    untrusted {
+      int ocall_readBlock(uint64_t vbid, [user_check]void *blk_buf);
+      int ocall_writeBlock(uint64_t vbid, [user_check]void *blk_buf, int flags);
+    };
+};

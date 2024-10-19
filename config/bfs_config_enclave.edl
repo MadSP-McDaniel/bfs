@@ -1,0 +1,22 @@
+/**
+ * @file bfs_config_enclave.edl
+ * @brief Ecall/ocall interface description for the configuration subsystem.
+ */
+
+enclave {
+    trusted {
+        public void empty_config_ecall();
+    };
+
+    untrusted {
+      int32_t ocall_load_system_config();
+      int64_t ocall_getConfigItem([in, size=len]const char *cfgtag, uint64_t len);
+      int64_t ocall_bfsCfgItemType(int64_t config_ptr);
+      int32_t ocall_bfsCfgItemNumSubItems(int64_t config_ptr);
+      int64_t ocall_getSubItemByIndex(int64_t config_ptr, int idx);
+      int64_t ocall_getSubItemByName(int64_t devconfig_ptr, [in, size=name_len]const char *name, uint64_t name_len);
+      int64_t ocall_bfsCfgItemValue(int64_t subconfig_ptr, [out, size=buf_len]char *subitem_buf, uint64_t buf_len);
+      int64_t ocall_bfsCfgItemValueLong(int64_t subconfig_ptr);
+      uint64_t ocall_bfsCfgItemValueUnsigned(int64_t subconfig_ptr);
+    };
+};

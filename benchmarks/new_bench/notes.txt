@@ -1,0 +1,5 @@
+1) Make sure to mount the bfs/nfs mount point with correct config/mount options.
+2) Make sure to set either directio/dsync and random flags correctly in micro.fd
+3) Make sure to set bench params correctly in run_bench.sh
+4) Make sure to run micro_warm.f before running the bench script for each mount point
+5) Then finally run the bench script for each mount point

@@ -1,0 +1,26 @@
+/**
+ * @file bfs_enclave_core_test.edl
+ * @brief Enclave interface description for the enclave-based core unit tests.
+ */
+
+enclave {
+    from "bfs_util_enclave.edl" import *;
+    from "bfs_comm_enclave.edl" import *;
+    from "bfs_config_enclave.edl" import *;
+    from "bfs_device_enclave.edl" import *;
+    // from "bfs_block_enclave.edl" import *;
+    from "bfs_core_enclave.edl" import *;
+    
+    trusted {
+      public int ecall_bfs_enclave_init(int type);
+      public int ecall_bfs_start_core_blk_test(uint64_t num_test_iterations);
+      public int ecall_bfs_start_core_file_test_rand(uint64_t num_files,
+								   uint64_t num_test_iterations,
+								   uint64_t max_op_sz, uint64_t min_op_sz);
+      public int ecall_bfs_start_core_file_test_simple(int _random, uint64_t num_it,
+										  uint64_t fsz, uint64_t op_sz);
+    };
+
+    untrusted {
+    };
+};

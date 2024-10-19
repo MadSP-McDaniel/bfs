@@ -1,0 +1,11 @@
+# Directories
+build/
+build/bin/
+config/
+log/
+scripts/
+# Files
+build/bin/bfs_device
+config/bfs_system_config.cfg
+scripts/bfsdev_ctrl.py
+scripts/bfs_dev_push.bash
